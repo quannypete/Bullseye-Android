@@ -12,14 +12,14 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun GamePrompt(modifier: Modifier = Modifier) {
+fun GamePrompt(targetValue: Int, modifier: Modifier = Modifier) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = modifier
         ) {
         Text(text = stringResource(R.string.instruction_text))
         Text(
-            text = stringResource(R.string.target_value_text),
+            text = "$targetValue",
             fontSize = 32.sp,
             fontWeight = FontWeight.Bold,
             modifier = Modifier.padding(8.dp)

@@ -1,44 +1,42 @@
 package com.yourcompany.bullseye
 
 import android.util.Log
-import android.widget.Toast
 import com.masonG.bullseye.ui.theme.BullseyeTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
-import androidx.compose.material3.Slider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.masonG.bullseye.GamePrompt
 import com.masonG.bullseye.R
 import com.masonG.bullseye.ResultDialog
 import com.masonG.bullseye.TargetSlider
+import kotlin.random.Random
 
 
 @Composable
 fun GameScreen() {
     var alertIsVisable by rememberSaveable { mutableStateOf (false) }
     var slidervalue by rememberSaveable { mutableStateOf(0.5f) }
+    var targetValue by rememberSaveable { mutableStateOf(Random.nextInt(1,100)) }
 
     val sliderToInt = (slidervalue * 100).toInt()
+
+    fun pointsForCurrentRound() : Int {
+        return 999
+    }
 
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -54,7 +52,7 @@ fun GameScreen() {
             verticalArrangement = Arrangement.SpaceEvenly,
             modifier = Modifier.weight(9f)
         ) {
-            GamePrompt()
+            GamePrompt(targetValue = targetValue)
             TargetSlider(
                 value = slidervalue,
                 valueChanged = { value ->
@@ -75,7 +73,8 @@ fun GameScreen() {
             ResultDialog(
                 hideDialog = { alertIsVisable = false
                 },
-                sliderValue = sliderToInt
+                sliderValue = sliderToInt,
+                points = pointsForCurrentRound()
             )
         }
     }
