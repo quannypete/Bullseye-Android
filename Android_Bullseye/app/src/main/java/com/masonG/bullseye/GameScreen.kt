@@ -1,4 +1,4 @@
-package com.yourcompany.bullseye
+package com.masonG.bullseye
 
 import android.util.Log
 import com.masonG.bullseye.ui.theme.BullseyeTheme
@@ -19,10 +19,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.masonG.bullseye.GamePrompt
-import com.masonG.bullseye.R
-import com.masonG.bullseye.ResultDialog
-import com.masonG.bullseye.TargetSlider
+import kotlin.math.abs
 import kotlin.random.Random
 
 
@@ -35,7 +32,9 @@ fun GameScreen() {
     val sliderToInt = (slidervalue * 100).toInt()
 
     fun pointsForCurrentRound() : Int {
-        return 999
+        val maxScore = 100
+        val difference = abs(targetValue - sliderToInt)
+       return maxScore - difference
     }
 
     Column(
