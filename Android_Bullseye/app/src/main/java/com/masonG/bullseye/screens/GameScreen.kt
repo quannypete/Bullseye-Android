@@ -38,6 +38,9 @@ fun GameScreen() {
 
     val sliderToInt = (slidervalue * 100).toInt()
 
+    var totalScore by rememberSaveable { mutableStateOf(0) }
+    var currentRound by rememberSaveable { mutableStateOf(1) }
+
     fun pointsForCurrentRound() : Int {
         val maxScore = 100
         val difference = abs(targetValue - sliderToInt)
@@ -67,12 +70,16 @@ fun GameScreen() {
             )
             Button(onClick = {
                 alertIsVisable = true
-                Log.i("Alert visable? ", alertIsVisable.toString())
+                totalScore += pointsForCurrentRound()
+                Log.i("ALERT VISIBLE? ", alertIsVisable.toString())
             }) {
                 Text(text = stringResource(R.string.hit_me_button_text))
 
             }
-            GamDetail(modifier = Modifier.fillMaxWidth())
+            GamDetail(
+                totalScore = totalScore,
+                round = currentRound,
+                modifier = Modifier.fillMaxWidth())
         }
         Spacer(modifier = Modifier.weight(.5f))
 
@@ -81,7 +88,11 @@ fun GameScreen() {
                 hideDialog = { alertIsVisable = false
                 },
                 sliderValue = sliderToInt,
-                points = pointsForCurrentRound()
+                points = pointsForCurrentRound(),
+                onRoundIncrement = {
+                    currentRound += 1
+                    targetValue = Random.nextInt(1,100)
+                }
             )
         }
     }

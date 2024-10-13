@@ -11,6 +11,7 @@ import com.masonG.bullseye.R
 @Composable
 fun ResultDialog(
     hideDialog: () -> Unit,
+    onRoundIncrement: () -> Unit,
     sliderValue: Int,
     points: Int,
     modifier: Modifier = Modifier
@@ -18,11 +19,13 @@ fun ResultDialog(
     AlertDialog(
         onDismissRequest = {
             hideDialog()
+            onRoundIncrement()
         },
         confirmButton = {
             TextButton(
                 onClick = {
                     hideDialog()
+                    onRoundIncrement()
                 }
             ) {
                 Text(stringResource(id = R.string.result_dialog_button_text))
