@@ -32,7 +32,7 @@ The Bullseye Android Game is a target-based game that helps demonstrate skills i
 ## Setup
 1. Clone the repository:
    ```bash
-   git clone https://github.com/quannypete/bullseye-android.git
+   git clone https://github.com/quannypete/Bullseye-Android.git
 2. Open the project in **Android Studio**.
 3. Sync Gradle files and build the project.
 4. Run the app on an emulator or connected Android device.
