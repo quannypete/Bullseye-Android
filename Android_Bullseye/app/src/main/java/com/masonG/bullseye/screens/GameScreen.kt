@@ -1,4 +1,4 @@
-package com.masonG.bullseye
+package com.masonG.bullseye.screens
 
 import android.util.Log
 import com.masonG.bullseye.ui.theme.BullseyeTheme
@@ -17,8 +17,13 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.masonG.bullseye.components.GamePrompt
+import com.masonG.bullseye.R
+import com.masonG.bullseye.components.ResultDialog
+import com.masonG.bullseye.components.TargetSlider
 import kotlin.math.abs
 import kotlin.random.Random
 
@@ -79,7 +84,7 @@ fun GameScreen() {
     }
 }
 
-@Preview(showBackground = true)
+@Preview(showBackground = true, device = Devices.AUTOMOTIVE_1024p, widthDp = 864, heightDp = 432)
 @Composable
 fun GameScreenPreview() {
     BullseyeTheme {
