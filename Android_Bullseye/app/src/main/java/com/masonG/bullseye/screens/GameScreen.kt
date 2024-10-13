@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
@@ -22,6 +23,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.masonG.bullseye.components.GamePrompt
 import com.masonG.bullseye.R
+import com.masonG.bullseye.components.GamDetail
 import com.masonG.bullseye.components.ResultDialog
 import com.masonG.bullseye.components.TargetSlider
 import kotlin.math.abs
@@ -70,6 +72,7 @@ fun GameScreen() {
                 Text(text = stringResource(R.string.hit_me_button_text))
 
             }
+            GamDetail(modifier = Modifier.fillMaxWidth())
         }
         Spacer(modifier = Modifier.weight(.5f))
 
