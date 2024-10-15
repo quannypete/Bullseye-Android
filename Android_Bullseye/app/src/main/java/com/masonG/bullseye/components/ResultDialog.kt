@@ -1,5 +1,6 @@
 package com.masonG.bullseye.components
 
+import android.app.AlertDialog
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -11,6 +12,7 @@ import com.masonG.bullseye.R
 @Composable
 fun ResultDialog(
     hideDialog: () -> Unit,
+    dialogTitle: Int,
     onRoundIncrement: () -> Unit,
     sliderValue: Int,
     points: Int,
@@ -31,7 +33,7 @@ fun ResultDialog(
                 Text(stringResource(id = R.string.result_dialog_button_text))
             }
         },
-        title = { Text(stringResource(id = R.string.result_dialog_title)) },
+        title = { Text(stringResource(id = dialogTitle)) },
         text = { Text(stringResource(id = R.string.result_dialog_message, sliderValue, points)) }
         //text = { Text("The slider's value is $sliderValue") }
     )
