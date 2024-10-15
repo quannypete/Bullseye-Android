@@ -18,13 +18,14 @@ import com.masonG.bullseye.R
 fun GamDetail(
     modifier: Modifier = Modifier,
     totalScore: Int = 0,
-    round: Int = 1
+    round: Int = 1,
+    onStartOver: () -> Unit
 ) {
     Row(
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceEvenly,
         modifier = modifier) {
-        Button(onClick = {}) {
+        Button(onClick = {onStartOver() }) {
             Text(text = stringResource(id = R.string.start_over))
         }
         GameInfo(label = stringResource(id = R.string.score_label), value = totalScore)
@@ -50,5 +51,5 @@ fun GameInfo(label: String, value: Int = 0) {
 @Preview(showBackground = true)
 @Composable
 fun GameDetailPreview() {
-    GamDetail()
+    GamDetail(onStartOver = {})
 }

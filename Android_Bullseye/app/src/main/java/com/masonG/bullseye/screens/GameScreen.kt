@@ -32,11 +32,12 @@ import kotlin.random.Random
 
 @Composable
 fun GameScreen() {
+    fun newTargetValue() = Random.nextInt(1, 100)
     var alertIsVisable by rememberSaveable { mutableStateOf (false) }
-    var slidervalue by rememberSaveable { mutableStateOf(0.5f) }
-    var targetValue by rememberSaveable { mutableStateOf(Random.nextInt(1,100)) }
+    var sliderValue by rememberSaveable { mutableStateOf(0.5f) }
+    var targetValue by rememberSaveable { mutableStateOf(newTargetValue()) }
 
-    val sliderToInt = (slidervalue * 100).toInt()
+    val sliderToInt = (sliderValue * 100).toInt()
 
     var totalScore by rememberSaveable { mutableStateOf(0) }
     var currentRound by rememberSaveable { mutableStateOf(1) }
@@ -54,6 +55,13 @@ fun GameScreen() {
             bonus = 50
         }
        return (maxScore - difference) + bonus
+    }
+
+    fun startNewGame() {
+        totalScore = 0
+        currentRound = 1
+        sliderValue = 0.5f
+        targetValue = newTargetValue()
     }
 
     fun alertTitle() : Int {
@@ -92,9 +100,9 @@ fun GameScreen() {
         ) {
             GamePrompt(targetValue = targetValue)
             TargetSlider(
-                value = slidervalue,
+                value = sliderValue,
                 valueChanged = { value ->
-                    slidervalue = value
+                    sliderValue = value
                 }
             )
             Button(onClick = {
@@ -108,6 +116,7 @@ fun GameScreen() {
             GamDetail(
                 totalScore = totalScore,
                 round = currentRound,
+                onStartOver = {startNewGame()},
                 modifier = Modifier.fillMaxWidth())
         }
         Spacer(modifier = Modifier.weight(.5f))
@@ -121,7 +130,7 @@ fun GameScreen() {
                 points = pointsForCurrentRound(),
                 onRoundIncrement = {
                     currentRound += 1
-                    targetValue = Random.nextInt(1,100)
+                    targetValue = newTargetValue()
                 }
             )
         }
